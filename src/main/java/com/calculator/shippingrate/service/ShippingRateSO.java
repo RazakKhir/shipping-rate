@@ -1,6 +1,10 @@
 package com.calculator.shippingrate.service;
 
-import java.io.Serializable;
+import com.calculator.shippingrate.model.ShippingRateDetailModel;
+import org.springframework.stereotype.Component;
 
-public interface ShippingRateSO<M, T extends Serializable> {
+@Component
+public interface ShippingRateSO {
+    ShippingRateDetailModel saveShippingInfo(ShippingRateDetailModel shippingRateDetailModel);
+    void jntWebScrapeProcess (ShippingRateDetailModel shippingRateDetailModel);
 }

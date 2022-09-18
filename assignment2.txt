@@ -1,0 +1,30 @@
+<script>
+
+    let numberList = [7, 13, 21, 26, 43, 52];
+    let totalSum = 39;
+    printSumArray(numberList, numberList.length, totalSum);
+
+    function printSumArray(numberList, sizeArray, totalSum)
+    {
+        let firstnum = 0, secondnum = 0;
+        let l = 0, r = sizeArray-1;
+
+        while (r > l)
+        {
+            if (Math.abs(numberList[l] + numberList[r]) === totalSum)
+            {
+                firstnum = JSON.parse(JSON.stringify(l));
+                secondnum = JSON.parse(JSON.stringify(r));
+                l = r;
+            }
+
+            if (numberList[l] + numberList[r] > totalSum) r--;
+            else l++;
+        }
+
+        document.write(
+        "Lucky pair: " + numberList[firstnum] + ", " + numberList[secondnum]
+        );
+    }
+
+</script>

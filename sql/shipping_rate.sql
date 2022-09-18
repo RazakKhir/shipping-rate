@@ -7,3 +7,4 @@ CREATE DATABASE IF NOT EXISTS `shipping_rate` CHARACTER SET utf8mb4 COLLATE utf8
 use shipping_rate;
 
 source sql/schema/txn_shipping_rate_info.sql;
+source sql/schema/txn_shipping_rate_detail.sql;

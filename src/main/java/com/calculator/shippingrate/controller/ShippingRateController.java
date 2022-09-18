@@ -1,10 +1,11 @@
 package com.calculator.shippingrate.controller;
 
-import com.calculator.shippingrate.entity.ShippingRateEntity;
-import com.calculator.shippingrate.model.ShippingRateModel;
-import com.calculator.shippingrate.repository.ShippingRateRepository;
+import com.calculator.shippingrate.model.ShippingRateDetailModel;
+import com.calculator.shippingrate.service.ShippingRateSO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,53 +17,22 @@ public class ShippingRateController {
     public static final String REQUEST_URL_SUBMIT_SHIPPING_INFO = "/submit/shipping-info";
 
     @Autowired
-    ShippingRateRepository shippingRateRepository;
+    ShippingRateSO shippingRateSO;
 
     @PostMapping(path = REQUEST_URL_SUBMIT_SHIPPING_INFO)
     public @ResponseBody
-    ShippingRateModel submitShippingRateInfo(@RequestBody ShippingRateModel shippingRateModel) {
-        ShippingRateModel returnShippingRateModel = new ShippingRateModel();
-        ShippingRateEntity returnShippingRateEntity = new ShippingRateEntity();
+    ResponseEntity<ShippingRateDetailModel> submitShippingRateInfo(@RequestBody ShippingRateDetailModel shippingRateDetailModel) {
+        ShippingRateDetailModel returnShippingRateModel = new ShippingRateDetailModel();
 
-        log.info("Start submitShippingRateInfo ... {}", shippingRateModel);
+        log.info("Start to save shipping information ... {}", REQUEST_URL_SUBMIT_SHIPPING_INFO);
         try {
-            log.info("save submitShippingRateInfo ...");
-            returnShippingRateEntity = shippingRateRepository.save(toEntity(shippingRateModel));
-            returnShippingRateModel = toModel(returnShippingRateEntity);
+            return new ResponseEntity<>(shippingRateSO.saveShippingInfo(shippingRateDetailModel), HttpStatus.OK);
         } catch (Exception e){
             e.printStackTrace();
             log.error(e.getMessage());
             returnShippingRateModel.setErrorCode("ERR001");
             returnShippingRateModel.setErrorMessage("Error in Saving data ... " + e.getMessage());
+            return new ResponseEntity<>(shippingRateSO.saveShippingInfo(returnShippingRateModel), HttpStatus.GATEWAY_TIMEOUT);
         }
-        log.info("End submitShippingRateInfo ...");
-        return returnShippingRateModel;
-    }
-
-    private ShippingRateEntity toEntity(ShippingRateModel shippingRateModel) {
-        ShippingRateEntity shippingRateEntity = new ShippingRateEntity();
-        try {
-            shippingRateEntity.setShippingTo(shippingRateModel.getShippingTo());
-            shippingRateEntity.setShippingType(shippingRateModel.getShippingType());
-            shippingRateEntity.setSenderPostcode(shippingRateModel.getSenderPostcode());
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.error(e.getMessage());
-        }
-        return shippingRateEntity;
-    }
-
-    private ShippingRateModel toModel(ShippingRateEntity shippingRateEntity) {
-        ShippingRateModel shippingRateModel = new ShippingRateModel();
-        try {
-            shippingRateModel.setShippingTo(shippingRateEntity.getShippingTo());
-            shippingRateModel.setShippingType(shippingRateEntity.getShippingType());
-            shippingRateModel.setSenderPostcode(shippingRateEntity.getSenderPostcode());
-            shippingRateModel.setId(shippingRateEntity.getShipRateId());
-        } catch (Exception e) {
-            e.printStackTrace();
-            log.error(e.getMessage());
-        }
-        return shippingRateModel;
     }
 }
