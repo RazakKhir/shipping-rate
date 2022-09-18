@@ -1,0 +1,42 @@
+{
+	"info": {
+		"_postman_id": "f5cada3e-d3a5-49a0-8c4e-d60150741f43",
+		"name": "TM - shipping rate",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "post shipping rate",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "",
+						"value": ""
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"shippingTo\": \"Johor Bharu\",\n\t\"shippingType\": \"ME\",\n\t\"senderPostcode\": \"43500\",\n\t\"logisticComp\": \"jnt\",\n    \"receiverPostcode\": \"73500\",\n    \"destinationCountry\": \"MY\",\n    \"weight\": \"15\",\n    \"width\": \"14\",\n    \"length\": \"13\",\n    \"height\": \"18\",\n    \"totalRate\": null\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/submit/shipping-info",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"submit",
+						"shipping-info"
+					]
+				},
+				"description": "retrieve shipping rate based on company"
+			},
+			"response": []
+		}
+	]
+}
