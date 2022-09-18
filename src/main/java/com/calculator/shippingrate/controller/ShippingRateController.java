@@ -30,9 +30,10 @@ public class ShippingRateController {
             returnShippingRateEntity = shippingRateRepository.save(toEntity(shippingRateModel));
             returnShippingRateModel = toModel(returnShippingRateEntity);
         } catch (Exception e){
+            e.printStackTrace();
             log.error(e.getMessage());
-            shippingRateModel.setErrorCode("ERR001");
-            shippingRateModel.setErrorMessage("Error in Saving data ... " + e.getMessage());
+            returnShippingRateModel.setErrorCode("ERR001");
+            returnShippingRateModel.setErrorMessage("Error in Saving data ... " + e.getMessage());
         }
         log.info("End submitShippingRateInfo ...");
         return returnShippingRateModel;
@@ -45,6 +46,7 @@ public class ShippingRateController {
             shippingRateEntity.setShippingType(shippingRateModel.getShippingType());
             shippingRateEntity.setSenderPostcode(shippingRateModel.getSenderPostcode());
         } catch (Exception e) {
+            e.printStackTrace();
             log.error(e.getMessage());
         }
         return shippingRateEntity;
@@ -56,8 +58,9 @@ public class ShippingRateController {
             shippingRateModel.setShippingTo(shippingRateEntity.getShippingTo());
             shippingRateModel.setShippingType(shippingRateEntity.getShippingType());
             shippingRateModel.setSenderPostcode(shippingRateEntity.getSenderPostcode());
-            shippingRateModel.setId(shippingRateEntity.getId());
+            shippingRateModel.setId(shippingRateEntity.getShipRateId());
         } catch (Exception e) {
+            e.printStackTrace();
             log.error(e.getMessage());
         }
         return shippingRateModel;

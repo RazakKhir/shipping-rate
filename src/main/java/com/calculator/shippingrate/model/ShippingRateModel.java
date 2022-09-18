@@ -17,7 +17,7 @@ public class ShippingRateModel implements Serializable {
 
     private String errorCode;
     private String errorMessage;
-    private UUID id;
+    private Long id;
     private String shippingTo; // International or Domestic
     private String senderPostcode;
     private String receiverPostcode;

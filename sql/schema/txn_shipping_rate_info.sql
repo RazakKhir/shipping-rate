@@ -8,13 +8,12 @@
 DROP TABLE IF EXISTS `txn_shipping_rate_info`;
 CREATE TABLE IF NOT EXISTS `txn_shipping_rate_info`
 (
-    `shipRateId`     BINARY(16)  NOT NULL,
-    `shippingTo`     VARCHAR(50) NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
-    `shippingType`   VARCHAR(5)  NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
-    `senderPostcode` VARCHAR(5)  NULL DEFAULT NULL COLLATE 'utf8mb4_0900_ai_ci',
-    PRIMARY KEY (`shipRateId`) USING BTREE
-) COLLATE = 'utf8mb4_0900_ai_ci'
-  ENGINE = InnoDB;
+    `shipRateId`     BIGINT(16)  NOT NULL AUTO_INCREMENT,
+    `shippingTo`     VARCHAR(50) NULL DEFAULT NULL,
+    `shippingType`   VARCHAR(5)  NULL DEFAULT NULL,
+    `senderPostcode` VARCHAR(5)  NULL DEFAULT NULL,
+    PRIMARY KEY (`shipRateId`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8;
 
 -- Data exporting was unselected.
 
