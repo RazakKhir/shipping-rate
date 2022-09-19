@@ -40,7 +40,7 @@ mvn spring-boot:run
 
 Go to browser and access this url: `http://localhost:8080/swagger-ui`.
 
-You can find the request body in `shipping_rate.postman_collection.json` file.
+You can find the sample request body in `shipping_rate.postman_collection.json` file.
 
 
 # Summary
