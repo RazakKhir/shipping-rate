@@ -9,6 +9,9 @@ First thing need to have:
   2. Maven 3.5.3
   3. MySql 8.0.30
   
+This application is build using Java, Springboot, JPA, MySQL and RESTful API.
+
+  
 ### 1) Installing packages
 
 Clone this project first in your local.
@@ -53,4 +56,4 @@ Currently, able to store the data in the DB but scraping still in progress due t
     1. this application able to save the record in DB.
     2. due to time constraint, able to integrate with J&T API only.
     3. scraping process able to submit form button but unable to scrape the value due to empty div tag in origin code `<div id="content"></div>`. In the code, the devs override the div tag to show the table.
-    4. for assignment #2, please find the file in parent folder named `assignment2.txt`. The solution is build on Javascript language.
+    4. for assignment #2, please find the file in parent folder named `assignment2.txt`. The solution is build using Javascript language.
